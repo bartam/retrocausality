@@ -1,0 +1,148 @@
+<div class="columns" style="align-items: stretch; height: 100vh; max-width: none; width: 100vw; margin: -6vh -8vw; padding: 0;">
+  <div style="flex: 1; position: relative; overflow: hidden; background: var(--bg-primary); display: flex; align-items: center; justify-content: center; padding: 2rem;">
+    <svg viewBox="0 0 360 640" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; max-height: 90vh;">
+      <style>
+        .diagram-label { font-family: 'Cormorant Garamond', serif; fill: #a89880; font-size: 9px; }
+        .diagram-title { font-family: 'Cinzel', serif; fill: #c9a84c; font-size: 11px; letter-spacing: 0.1em; }
+        .diagram-note { font-family: 'Cormorant Garamond', serif; fill: #a89880; font-size: 8px; font-style: italic; }
+        .photon-path { stroke: #c9a84c; stroke-width: 1.5; fill: none; opacity: 0.8; }
+        .photon-path-dim { stroke: #4a3f6b; stroke-width: 1; fill: none; opacity: 0.5; stroke-dasharray: 3 2; }
+        .component { fill: none; stroke: #d4c5a9; stroke-width: 1; }
+        .component-fill { fill: rgba(201,168,76,0.15); stroke: #c9a84c; stroke-width: 0.8; }
+        .detector { fill: rgba(74,63,107,0.3); stroke: #4a3f6b; stroke-width: 1; }
+      </style>
+
+      <!-- Section 1: Particle behavior -->
+      <text class="diagram-title" x="20" y="25">AS PARTICLE</text>
+      <text class="diagram-note" x="20" y="38">One beam splitter — photon takes one path</text>
+
+      <!-- Beam splitter -->
+      <rect class="component-fill" x="50" y="70" width="16" height="16" transform="rotate(45,58,78)"/>
+      <text class="diagram-label" x="38" y="100">BS₁</text>
+
+      <!-- Mirror top -->
+      <rect class="component" x="155" y="55" width="20" height="4" transform="rotate(45,165,57)"/>
+      <text class="diagram-label" x="172" y="52">M</text>
+
+      <!-- Mirror bottom -->
+      <rect class="component" x="55" y="155" width="20" height="4" transform="rotate(45,65,157)"/>
+      <text class="diagram-label" x="42" y="172">M</text>
+
+      <!-- Photon paths -->
+      <line class="photon-path" x1="20" y1="78" x2="50" y2="78"/>
+      <!-- Path 1 up -->
+      <line class="photon-path-dim" x1="58" y1="70" x2="165" y2="57"/>
+      <line class="photon-path-dim" x1="172" y1="64" x2="280" y2="157"/>
+      <!-- Path 2 down -->
+      <line class="photon-path-dim" x1="58" y1="86" x2="65" y2="150"/>
+      <line class="photon-path-dim" x1="72" y1="162" x2="270" y2="162"/>
+
+      <!-- Detectors -->
+      <rect class="detector" x="280" y="145" width="24" height="24" rx="2"/>
+      <text class="diagram-label" x="286" y="161" fill="#8b7ec8">D1</text>
+      <text class="diagram-label" x="310" y="155">50%</text>
+
+      <rect class="detector" x="280" y="175" width="24" height="24" rx="2"/>
+      <text class="diagram-label" x="286" y="191" fill="#8b7ec8">D2</text>
+      <text class="diagram-label" x="310" y="185">50%</text>
+
+      <!-- Photon arrow -->
+      <polygon points="17,75 22,78 17,81" fill="#c9a84c" opacity="0.8"/>
+
+      <!-- Divider -->
+      <line x1="20" y1="215" x2="340" y2="215" stroke="#4a3f6b" stroke-width="0.5" opacity="0.3"/>
+
+      <!-- Section 2: Wave behavior -->
+      <text class="diagram-title" x="20" y="240">AS WAVE</text>
+      <text class="diagram-note" x="20" y="253">Add second beam splitter — interference occurs</text>
+
+      <!-- Beam splitter 1 -->
+      <rect class="component-fill" x="50" y="280" width="16" height="16" transform="rotate(45,58,288)"/>
+      <text class="diagram-label" x="38" y="310">BS₁</text>
+
+      <!-- Mirror top -->
+      <rect class="component" x="155" y="265" width="20" height="4" transform="rotate(45,165,267)"/>
+
+      <!-- Mirror bottom -->
+      <rect class="component" x="55" y="365" width="20" height="4" transform="rotate(45,65,367)"/>
+
+      <!-- Beam splitter 2 -->
+      <rect class="component-fill" x="262" y="350" width="16" height="16" transform="rotate(45,270,358)"/>
+      <text class="diagram-label" x="255" y="380">BS₂</text>
+
+      <!-- Paths -->
+      <line class="photon-path" x1="20" y1="288" x2="50" y2="288"/>
+      <line class="photon-path" x1="58" y1="280" x2="165" y2="267"/>
+      <line class="photon-path" x1="172" y1="274" x2="265" y2="352"/>
+      <line class="photon-path" x1="58" y1="296" x2="65" y2="360"/>
+      <line class="photon-path" x1="72" y1="367" x2="262" y2="358"/>
+
+      <!-- Detectors -->
+      <rect class="detector" x="295" y="340" width="24" height="24" rx="2"/>
+      <text class="diagram-label" x="300" y="356" fill="#c9a84c">D1</text>
+      <text class="diagram-label" x="322" y="350" fill="#c9a84c">100%</text>
+
+      <rect class="detector" x="295" y="370" width="24" height="24" rx="2"/>
+      <text class="diagram-label" x="300" y="386" fill="#8b7ec8">D2</text>
+      <text class="diagram-label" x="322" y="380">0%</text>
+
+      <polygon points="17,285 22,288 17,291" fill="#c9a84c" opacity="0.8"/>
+
+      <!-- Divider -->
+      <line x1="20" y1="410" x2="340" y2="410" stroke="#4a3f6b" stroke-width="0.5" opacity="0.3"/>
+
+      <!-- Section 3: Delayed Choice -->
+      <text class="diagram-title" x="20" y="435">DELAYED CHOICE</text>
+      <text class="diagram-note" x="20" y="448">Photon already in flight — then BS₂ is inserted</text>
+
+      <!-- Beam splitter 1 -->
+      <rect class="component-fill" x="50" y="475" width="16" height="16" transform="rotate(45,58,483)"/>
+      <text class="diagram-label" x="38" y="505">BS₁</text>
+
+      <!-- Mirror top -->
+      <rect class="component" x="155" y="460" width="20" height="4" transform="rotate(45,165,462)"/>
+
+      <!-- Mirror bottom -->
+      <rect class="component" x="55" y="560" width="20" height="4" transform="rotate(45,65,562)"/>
+
+      <!-- BS₂ inserted late — highlighted -->
+      <rect x="256" y="542" width="28" height="28" rx="2" fill="none" stroke="#c9a84c" stroke-width="1" stroke-dasharray="3 2" opacity="0.6"/>
+      <rect class="component-fill" x="262" y="548" width="16" height="16" transform="rotate(45,270,556)"/>
+      <text class="diagram-label" x="253" y="580" fill="#c9a84c">BS₂ ⚡</text>
+      <text class="diagram-note" x="230" y="595" fill="#c9a84c">inserted now</text>
+
+      <!-- Photon already past BS₁ -->
+      <line class="photon-path" x1="20" y1="483" x2="50" y2="483"/>
+      <line class="photon-path" x1="58" y1="475" x2="165" y2="462"/>
+      <line class="photon-path" x1="172" y1="469" x2="265" y2="550"/>
+      <line class="photon-path" x1="58" y1="491" x2="65" y2="555"/>
+      <line class="photon-path" x1="72" y1="562" x2="262" y2="556"/>
+
+      <polygon points="17,480 22,483 17,486" fill="#c9a84c" opacity="0.8"/>
+
+      <!-- Result: D1 100% as if it was ALWAYS a wave -->
+      <rect class="detector" x="295" y="538" width="24" height="24" rx="2"/>
+      <text class="diagram-label" x="300" y="554" fill="#c9a84c">D1</text>
+      <text class="diagram-label" x="322" y="548" fill="#c9a84c">100%</text>
+
+      <rect class="detector" x="295" y="568" width="24" height="24" rx="2"/>
+      <text class="diagram-label" x="300" y="584" fill="#8b7ec8">D2</text>
+      <text class="diagram-label" x="322" y="578">0%</text>
+
+      <!-- Retroactive arrow -->
+      <line x1="270" y1="610" x2="58" y2="610" stroke="#c9a84c" stroke-width="0.8" stroke-dasharray="4 2" opacity="0.5"/>
+      <polygon points="58,607 50,610 58,613" fill="#c9a84c" opacity="0.5"/>
+      <text class="diagram-note" x="90" y="625" fill="#c9a84c">photon behaves as if BS₂ was always there</text>
+
+    </svg>
+  </div>
+  <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 4rem;">
+    <h2>John Archibald Wheeler</h2>
+    <div class="divider" style="margin: 0.5em 0;"></div>
+    <img src="assets/John_Archibald_Wheeler_lecturing.jpg" alt="John Archibald Wheeler" class="small" style="margin: 1em 0; align-self: flex-start;">
+    <p>In 1978, Wheeler proposed the <span class="accent">Delayed Choice Experiment</span> — an experiment where the decision to observe a photon as a wave or particle is made <em>after</em> it has already passed through the apparatus.</p>
+    <br>
+    <p>The photon behaves as though it <em>knew in advance</em> how it would be measured. The future observation reshapes the past trajectory.</p>
+    <p style="margin-top: auto; font-style: italic; color: var(--accent);">Confirmed experimentally 2007</p>
+  </div>
+</div>

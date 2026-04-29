@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentation</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="deck" id="deck"></div>
+
+<!-- Decoy slide -->
+<div id="decoy" style="display: none; position: fixed; inset: 0; background: #1b1b1b; z-index: 999; flex-direction: row;">
+  <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem;">
+    <h1 style="font-family: Arial, sans-serif; color: #fff; font-size: clamp(2.5rem, 5vw, 4.5rem); text-shadow: none; letter-spacing: normal; text-transform: none; line-height: 1.2;">Kasey is a<br><span style="background: #c8b632; color: #000; padding: 0 0.2em; font-style: normal; font-weight: 900;">Hard 10</span></h1>
+  </div>
+  <div style="flex: 1; position: relative; overflow: hidden;">
+    <img src="assets/bellaSwan.jpeg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0;">
+  </div>
+  <!-- Annotation overlay spanning entire decoy -->
+  <svg id="decoy-annotations" viewBox="0 0 1000 500" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible;">
+    <style>
+      .annotation-line {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 1;
+        stroke-dasharray: 2000;
+        stroke-dashoffset: 2000;
+        animation: draw-line 2s ease forwards;
+      }
+      .annotation-label {
+        font-family: 'Cormorant Garamond', 'Georgia', serif;
+        fill: #fff;
+        font-size: 24px;
+        font-style: italic;
+        font-weight: 300;
+        letter-spacing: 0.1em;
+        opacity: 0;
+        animation: fade-in 0.5s ease forwards;
+        animation-delay: 1.4s;
+      }
+      .annotation-circle {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 2.5;
+        stroke-dasharray: 300;
+        stroke-dashoffset: 300;
+        animation: draw-line 1s ease forwards;
+        animation-delay: 0.3s;
+      }
+      @keyframes draw-line {
+        to { stroke-dashoffset: 0; }
+      }
+      @keyframes fade-in {
+        to { opacity: 1; }
+      }
+    </style>
+    <!-- Label on left panel -->
+    <text class="annotation-label" x="230" y="130" style="animation-delay: 0s;">smart</text>
+    <!-- Line from label to eyes -->
+    <path class="annotation-line" d="M 350 135 Q 460 155, 560 180" style="animation-delay: 0.6s;" />
+    <!-- Label gorgeous -->
+    <text class="annotation-label" x="100" y="350" style="animation-delay: 1.8s;">gorgeous</text>
+    <!-- Line from label to hair -->
+    <path class="annotation-line" d="M 270 345 Q 420 320, 570 250" style="animation-delay: 2.4s;" />
+    <!-- Label boobs -->
+    <text class="annotation-label" x="180" y="460" style="animation-delay: 3.6s;">boobs</text>
+    <!-- Line from label to bottom of picture -->
+    <path class="annotation-line" d="M 300 455 Q 450 460, 600 470" style="animation-delay: 4.2s;" />
+  </svg>
+</div>
+
+<!-- Controls -->
+<div class="progress-bar" id="progress"></div>
+<div class="slide-counter" id="counter"></div>
+<button class="fullscreen-btn" id="fsBtn" title="Toggle fullscreen">&#x26F6; Fullscreen</button>
+
+<script src="slides.js"></script>
+
+</body>
+</html>

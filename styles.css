@@ -1,0 +1,410 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121c;
+  --bg-tertiary: #1a1a2a;
+  --text-primary: #d4c5a9;
+  --text-secondary: #a89880;
+  --accent: #c9a84c;
+  --accent-glow: rgba(201, 168, 76, 0.3);
+  --accent-dim: #7a6530;
+  --mystic: #4a3f6b;
+  --mystic-glow: rgba(74, 63, 107, 0.4);
+  --code-bg: #0d0d14;
+  --transition-speed: 0.6s;
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Cormorant Garamond', serif;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+/* Subtle background texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, var(--mystic-glow) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, var(--accent-glow) 0%, transparent 50%);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Slide container */
+.deck {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6vh 8vw;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+  transform: translateY(10px);
+  text-align: center;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.slide.exit-left {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+}
+
+/* Typography */
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 0.4em;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: 0 0 40px var(--accent-glow);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 3rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-weight: 400;
+  margin-bottom: 0.5em;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+}
+
+p, li {
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  line-height: 1.8;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  color: var(--text-secondary);
+  margin-top: 0.3em;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.accent { color: var(--accent); }
+.mystic { color: #8b7ec8; }
+
+/* Decorative elements */
+.sigil {
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--accent-dim);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1em auto;
+  position: relative;
+  animation: rotate-slow 20s linear infinite;
+}
+
+.sigil::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--mystic);
+  border-radius: 50%;
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.divider {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 1em auto;
+  position: relative;
+}
+
+.divider::before {
+  content: "◆";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--accent);
+  font-size: 0.6rem;
+}
+
+/* Bullet list */
+ul.bullets {
+  list-style: none;
+  text-align: left;
+  width: 100%;
+  max-width: 700px;
+}
+
+ul.bullets li {
+  padding: 0.55em 0;
+  padding-left: 1.8em;
+  position: relative;
+}
+
+ul.bullets li::before {
+  content: "◇";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  color: var(--accent);
+  font-size: 0.8em;
+}
+
+/* Image styles */
+.slide img {
+  max-width: 80%;
+  max-height: 55vh;
+  border-radius: 4px;
+  object-fit: contain;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6), 0 0 80px var(--mystic-glow);
+  border: 1px solid var(--accent-dim);
+}
+
+.slide img.small {
+  max-height: 35vh;
+}
+
+.slide img.unconstrained {
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+}
+
+.slide img.full-width {
+  max-width: 100%;
+  max-height: 50vh;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  border: none;
+}
+
+.img-caption {
+  margin-top: 1em;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Two-column layout */
+.columns {
+  display: flex;
+  gap: 4vw;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1100px;
+  text-align: left;
+}
+
+.columns > * { flex: 1; }
+
+.columns img {
+  max-width: 100%;
+  max-height: 50vh;
+}
+
+/* Quote/invocation style */
+.invocation {
+  font-family: var(--font-body);
+  font-size: clamp(1.3rem, 2.5vw, 2.2rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-primary);
+  max-width: 700px;
+  line-height: 1.7;
+  border-left: 2px solid var(--accent-dim);
+  padding-left: 1.5em;
+  text-align: left;
+}
+
+/* Code block */
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--accent-dim);
+  border-radius: 4px;
+  padding: 1.5em 2em;
+  text-align: left;
+  width: 100%;
+  max-width: 750px;
+  overflow-x: auto;
+  font-size: clamp(0.85rem, 1.3vw, 1.1rem);
+}
+
+code {
+  font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.keyword { color: #c9a84c; }
+.string  { color: #8b7ec8; }
+.comment { color: #5a5a6a; }
+.func    { color: #d4c5a9; }
+
+/* Progress bar */
+.progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--mystic), var(--accent));
+  transition: width 0.35s ease;
+  z-index: 100;
+}
+
+/* Slide counter */
+.slide-counter {
+  position: fixed;
+  bottom: 14px;
+  right: 24px;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.1em;
+  z-index: 100;
+  user-select: none;
+}
+
+/* Fullscreen button */
+.fullscreen-btn {
+  position: fixed;
+  bottom: 12px;
+  left: 24px;
+  background: none;
+  border: 1px solid var(--accent-dim);
+  border-radius: 2px;
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  z-index: 100;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.fullscreen-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Manuscript card style */
+.manuscript {
+  background: linear-gradient(145deg, #2a2318, #1e1a14, #2a2318);
+  border: 1px solid #4a3f2e;
+  padding: 2.5em 2.5em;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5), inset 0 0 60px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+.manuscript::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(100,80,50,0.06) 28px, rgba(100,80,50,0.06) 29px);
+  pointer-events: none;
+}
+
+.manuscript::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; right: 0;
+  width: 40px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.3));
+  pointer-events: none;
+}
+
+.manuscript .ms-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2em;
+}
+
+.manuscript .ms-date {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: #7a6e58;
+  font-style: italic;
+  margin-bottom: 1.2em;
+}
+
+.manuscript p {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  line-height: 1.85;
+  color: #b8a88a;
+}
+
+.manuscript .ms-note {
+  margin-top: 1.2em;
+  padding-top: 1em;
+  border-top: 1px solid rgba(100,80,50,0.3);
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* Glow animation for emphasis */
+.glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { text-shadow: 0 0 20px var(--accent-glow); }
+  50% { text-shadow: 0 0 40px var(--accent-glow), 0 0 80px var(--accent-glow); }
+}
