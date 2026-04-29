@@ -10,6 +10,13 @@ async function loadSlides() {
     section.className = 'slide';
     section.innerHTML = html;
     deck.appendChild(section);
+
+    // Execute any script tags in the slide
+    section.querySelectorAll('script').forEach(oldScript => {
+      const newScript = document.createElement('script');
+      newScript.textContent = oldScript.textContent;
+      oldScript.replaceWith(newScript);
+    });
   }
 
   initDeck();

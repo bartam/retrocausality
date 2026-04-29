@@ -1,4 +1,114 @@
 <div class="sigil"></div>
-<h1 class="glow">Time Does Not Exist</h1>
+
+<h1 class="glow" style="position: relative; overflow: visible;">
+  <span id="title-letters" style="display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 0;"></span>
+</h1>
+
 <div class="divider"></div>
 <p class="subtitle">Retrocausality &mdash; when the future reaches back</p>
+
+<script>
+(function() {
+  const phrase = "TIME DOES NOT EXIST";
+  const container = document.getElementById('title-letters');
+  if (!container) return;
+  const spans = [];
+
+  phrase.split('').forEach((char) => {
+    const span = document.createElement('span');
+    span.textContent = char;
+    span.style.cssText = 'display:inline-block;position:relative;transition:all 0.6s ease;';
+    if (char === ' ') span.style.width = '0.3em';
+    container.appendChild(span);
+    spans.push(span);
+  });
+
+  let running = false;
+
+  function sleep(ms) {
+    return new Promise(r => setTimeout(r, ms));
+  }
+
+  async function cycle() {
+    if (running) return;
+    // Only run when parent slide is visible
+    const slide = container.closest('.slide');
+    if (!slide || !slide.classList.contains('active')) return;
+
+    running = true;
+
+    // Find swappable pairs (same letter, one in back half, one in front)
+    const mid = Math.floor(spans.length * 0.55);
+    const pairs = [];
+    for (let b = mid; b < spans.length; b++) {
+      if (phrase[b] === ' ') continue;
+      for (let f = 0; f < mid; f++) {
+        if (phrase[f] === phrase[b] && f !== b) {
+          pairs.push([f, b]);
+          break;
+        }
+      }
+    }
+    if (pairs.length === 0) { running = false; return; }
+
+    const [destIdx, srcIdx] = pairs[Math.floor(Math.random() * pairs.length)];
+    const srcSpan = spans[srcIdx];
+    const destSpan = spans[destIdx];
+
+    const srcRect = srcSpan.getBoundingClientRect();
+    const destRect = destSpan.getBoundingClientRect();
+
+    if (srcRect.width === 0) { running = false; return; }
+
+    const dx = destRect.left - srcRect.left;
+    const dy = destRect.top - srcRect.top;
+    const dx2 = -dx;
+    const dy2 = -dy;
+
+    // Phase 1: lift up/down
+    srcSpan.style.zIndex = '10';
+    destSpan.style.zIndex = '10';
+    srcSpan.style.color = '#c9a84c';
+    destSpan.style.color = '#c9a84c';
+    srcSpan.style.transform = 'translateY(-30px)';
+    destSpan.style.transform = 'translateY(30px)';
+    srcSpan.style.opacity = '0.7';
+    destSpan.style.opacity = '0.7';
+
+    await sleep(300);
+
+    // Phase 2: fly to swapped position
+    srcSpan.style.transform = 'translate(' + dx + 'px, -15px)';
+    destSpan.style.transform = 'translate(' + dx2 + 'px, 15px)';
+
+    await sleep(400);
+
+    // Phase 3: settle into place
+    srcSpan.style.transform = 'translate(' + dx + 'px, 0px)';
+    destSpan.style.transform = 'translate(' + dx2 + 'px, 0px)';
+    srcSpan.style.opacity = '1';
+    destSpan.style.opacity = '1';
+
+    await sleep(300);
+
+    // Reset without transition
+    srcSpan.style.transition = 'none';
+    destSpan.style.transition = 'none';
+    srcSpan.style.transform = '';
+    destSpan.style.transform = '';
+    srcSpan.style.color = '';
+    destSpan.style.color = '';
+    srcSpan.style.zIndex = '';
+    destSpan.style.zIndex = '';
+
+    // Force reflow then re-enable transition
+    void srcSpan.offsetHeight;
+    srcSpan.style.transition = 'all 0.6s ease';
+    destSpan.style.transition = 'all 0.6s ease';
+
+    running = false;
+  }
+
+  setInterval(cycle, 2500);
+})();
+</script>
