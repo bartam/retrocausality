@@ -1,5 +1,56 @@
 <h2><span style="margin-right: 0.3em;">👁</span> The Block Universe</h2>
 <div class="divider"></div>
-<p class="invocation">Einstein's general relativity implies all moments — past, present, future — exist simultaneously.</p>
-<br>
-<p class="invocation">If the universe is a four-dimensional block, then causation in "one direction" is a human convenience, not a physical law.</p>
+
+<div class="columns" style="margin-top: 1.5em; gap: 3vw; align-items: center;">
+  <div>
+    <p class="invocation" style="font-size: clamp(1.1rem, 1.8vw, 1.5rem);">Einstein's general relativity implies all moments — past, present, future — exist simultaneously.</p>
+    <br>
+    <p class="invocation" style="font-size: clamp(1.1rem, 1.8vw, 1.5rem);">If the universe is a four-dimensional block, then causation in "one direction" is a human convenience, not a physical law.</p>
+  </div>
+
+  <div>
+    <svg viewBox="0 0 400 350" preserveAspectRatio="xMidYMid meet" style="width: 100%; max-height: 50vh;">
+      <!-- 3D block - back face -->
+      <polygon points="120,40 340,40 340,220 120,220" fill="none" stroke="#4a3f6b" stroke-width="0.8" opacity="0.3"/>
+      <!-- 3D block - front face -->
+      <polygon points="60,80 280,80 280,260 60,260" fill="rgba(201,168,76,0.05)" stroke="#c9a84c" stroke-width="0.8" opacity="0.6"/>
+      <!-- Connecting edges -->
+      <line x1="60" y1="80" x2="120" y2="40" stroke="#4a3f6b" stroke-width="0.8" opacity="0.3"/>
+      <line x1="280" y1="80" x2="340" y2="40" stroke="#4a3f6b" stroke-width="0.8" opacity="0.3"/>
+      <line x1="280" y1="260" x2="340" y2="220" stroke="#4a3f6b" stroke-width="0.8" opacity="0.3"/>
+      <line x1="60" y1="260" x2="120" y2="220" stroke="#4a3f6b" stroke-width="0.8" opacity="0.3"/>
+
+      <!-- Time axis arrow -->
+      <line x1="60" y1="280" x2="280" y2="280" stroke="#a89880" stroke-width="0.8"/>
+      <polygon points="280,277 290,280 280,283" fill="#a89880"/>
+      <text x="170" y="300" text-anchor="middle" font-family="Cinzel, serif" font-size="11" fill="#a89880" letter-spacing="0.15em">TIME</text>
+
+      <!-- Time slices -->
+      <line x1="110" y1="80" x2="110" y2="260" stroke="#c9a84c" stroke-width="0.5" opacity="0.4" stroke-dasharray="4 3"/>
+      <line x1="170" y1="80" x2="170" y2="260" stroke="#c9a84c" stroke-width="0.5" opacity="0.4" stroke-dasharray="4 3"/>
+      <line x1="230" y1="80" x2="230" y2="260" stroke="#c9a84c" stroke-width="0.5" opacity="0.4" stroke-dasharray="4 3"/>
+
+      <!-- Slice labels -->
+      <text x="110" y="74" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11" fill="#a89880" font-style="italic">past</text>
+      <text x="170" y="74" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11" fill="#c9a84c" font-style="italic">now</text>
+      <text x="230" y="74" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11" fill="#a89880" font-style="italic">future</text>
+
+      <!-- "You are here" dot on the "now" slice -->
+      <circle cx="170" cy="170" r="4" fill="#c9a84c"/>
+      <circle cx="170" cy="170" r="8" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.5">
+        <animate attributeName="r" values="8;14;8" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Worldline threading through all slices -->
+      <path d="M 90,200 Q 110,160 130,180 Q 150,200 170,170 Q 190,140 210,160 Q 230,180 250,140" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.7"/>
+
+      <!-- Dots on worldline at each slice -->
+      <circle cx="110" cy="172" r="3" fill="#4a3f6b" opacity="0.7"/>
+      <circle cx="230" cy="168" r="3" fill="#4a3f6b" opacity="0.7"/>
+
+      <!-- Label -->
+      <text x="200" y="330" text-anchor="middle" font-family="Cinzel, serif" font-size="9" fill="#a89880" letter-spacing="0.15em">ALL MOMENTS EXIST SIMULTANEOUSLY</text>
+    </svg>
+  </div>
+</div>
